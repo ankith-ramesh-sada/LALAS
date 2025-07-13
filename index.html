@@ -1,95 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Lalas</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Lalas</title> <!-- Original title preserved -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #9eaae2;
-            /*background-image: url('images/photo.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat; */
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #9eaae2;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px 20px; /* Padding for tabs */
+    }
 
-        .container {
-            background: rgb(230, 229, 229);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            /*max-width: 400px; */
-            max-width: 600px; /* Increased width for better gallery */
-            position: relative; 
-            text-align: center;
-        }
+    .tabs {
+      position: fixed; /* Tabs fixed top-right */
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 25px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 5px 15px;
+      z-index: 10;
+    }
 
-        .main-heading {
-            color: #333;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .tab {
+      border: none;
+      background: transparent;
+      color: #ccc;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
+    .tab:hover {
+      color: #fff;
+      border-bottom: 2px solid #6f42c1;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-            font-size: 14px;
-        }
+    .tab.active {
+      color: #fff;
+      border-bottom: 2px solid #8a2be2;
+    }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background-color: #f8f9fa;
-        }
+    .container {
+      background: rgb(230, 229, 229);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 100px auto 40px;
+      text-align: center;
+      display: none;
+    }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-            background-color: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
+    .container.active {
+      display: block;
+    }
 
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #90b8e1;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
+    .main-heading {
+      color: #333;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .submit-btn:hover {
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background-color: #f8f9fa;
+    }
+
+    input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #90b8e1;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+      .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
@@ -98,130 +136,91 @@
             transform: translateY(0);
         }
 
-        .console-note {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .tabs {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background-color: yellow;  /* highlight */
-            padding: 5px;
-            border-radius: 8px;
-            display: flex;
-            gap: 8px;
-            z-index: 10;
-        }
+    .console-note {
+      margin-top: 20px;
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+        font-size: 14px;
+      color: #666;
+    }
 
-        .tab-button {
-            padding: 8px 14px;
-            cursor: pointer;
-            background-color: #90b8e1;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
+    /* Video section styling */
+    .video-section {
+      max-width: 700px;
+      margin: 100px auto 40px;
+      background: #e6e5e5;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: none;
+    }
 
-        .tab-button.active,
-        .tab-button:hover {
-            background-color: #667eea;
-        }
+    .video-section.active {
+      display: block;
+    }
 
-        .tab-content {
-            display: none;
-            margin-top: 40px; /* space under tabs */
-        }
+    .video-section h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
 
-        .tab-content.active {
-            display: block;
-        }
-
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-            justify-items: center;
-            background-color: yellow;  /* highlight */
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .image-gallery img {
-            width: 140px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .image-gallery img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.6);
-        }
-
-    </style>
+    video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-         <div class="tabs" style="background-color: yellow;">  <!-- highlight -->
-            <button class="tab-button active" data-tab="home">Home</button>
-            <button class="tab-button" data-tab="gallery">Gallery</button>
-        </div>
+  <!-- Tabs at top right -->
+  <div class="tabs">
+    <button class="tab active" data-tab="form">👋 Home Page</button>
+    <button class="tab" data-tab="meet">🎥 Meet Our Team</button>
+  </div>
 
-        <div class="tab-content active" id="home">
-        <h1 class="main-heading">Welcome to LALAS</h1>
-        
-        <form id="nameForm">
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required>
-            </div>
-            
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-        
-        <div class="console-note">
-            <strong>Note:</strong> check the console to view the submitted data</div>
+  <!-- Form Tab -->
+  <div class="container active" id="formSection">
+    <h1 class="main-heading">Welcome to LALAS</h1>
+    <form id="nameForm">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required />
+      </div>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <div class="console-note">
+      <strong>Note:</strong> Check the console to view submitted data
     </div>
-    </div>
-        <div class="tab-content" id="gallery" style="background-color: yellow; padding: 10px; border-radius: 8px;"> <!-- highlight -->
-            <div class="image-gallery">
-                <img src="images/photo.jpg" alt="Photo 1" />
-                
-                <!-- Add more images here -->
-            </div>
-        </div>
+  </div>
 
-    </div>
+  <!-- Meet Our Team Tab -->
+  <div class="video-section" id="meetSection">
+    <h2>Meet Our Team</h2>
+    <video controls>
+      <source src="images/intro video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
-    <script>
-        document.getElementById('nameForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            
-            const formData = {
-                firstName: firstName,
-                lastName: lastName,
-                timestamp: new Date().toLocaleString()
-            };
-            
-            console.log('=== Form Submission Data ===');
+  <script>
+    document.getElementById('nameForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const formData = {
+        firstName,
+        lastName,
+        timestamp: new Date().toLocaleString()
+      };
+      console.log('=== Form Submission Data ===');
             console.log('First Name:', firstName);
             console.log('Last Name:', lastName);
             console.log('Full Data Object:', formData);
@@ -230,24 +229,26 @@
             alert(`data entry to console is done`);
 
             document.getElementById('nameForm').reset();
-            
-        });
-             const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
+    });
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tab = button.getAttribute('data-tab');
+    const tabs = document.querySelectorAll('.tab');
+    const formSection = document.getElementById('formSection');
+    const meetSection = document.getElementById('meetSection');
 
-                // Remove active class from all buttons and contents
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-                // Add active class to clicked button and corresponding content
-                button.classList.add('active');
-                document.getElementById(tab).classList.add('active');
-            });
-        });
-    </script>
+        if (tab.dataset.tab === 'form') {
+          formSection.classList.add('active');
+          meetSection.classList.remove('active');
+        } else {
+          formSection.classList.remove('active');
+          meetSection.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
