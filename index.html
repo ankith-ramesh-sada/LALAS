@@ -31,7 +31,9 @@
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
+            /*max-width: 400px; */
+            max-width: 600px; /* Increased width for better gallery */
+            position: relative; 
             text-align: center;
         }
 
@@ -107,20 +109,25 @@
         }
         
         .tabs {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background-color: yellow;  /* highlight */
+            padding: 5px;
+            border-radius: 8px;
             display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
+            gap: 8px;
+            z-index: 10;
         }
 
         .tab-button {
-            padding: 10px 20px;
+            padding: 8px 14px;
             cursor: pointer;
             background-color: #90b8e1;
             border: none;
-            border-radius: 8px 8px 0 0;
+            border-radius: 8px;
             color: white;
             font-weight: 600;
-            margin: 0 5px;
             transition: background-color 0.3s ease;
         }
 
@@ -131,6 +138,7 @@
 
         .tab-content {
             display: none;
+            margin-top: 40px; /* space under tabs */
         }
 
         .tab-content.active {
@@ -138,14 +146,17 @@
         }
 
         .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 15px;
-            justify-content: center;
+            justify-items: center;
+            background-color: yellow;  /* highlight */
+            padding: 10px;
+            border-radius: 8px;
         }
 
         .image-gallery img {
-            width: 150px;
+            width: 140px;
             height: 100px;
             object-fit: cover;
             border-radius: 10px;
@@ -162,7 +173,7 @@
 </head>
 <body>
     <div class="container">
-         <div class="tabs">
+         <div class="tabs" style="background-color: yellow;">  <!-- highlight -->
             <button class="tab-button active" data-tab="home">Home</button>
             <button class="tab-button" data-tab="gallery">Gallery</button>
         </div>
@@ -188,7 +199,7 @@
             <strong>Note:</strong> check the console to view the submitted data</div>
     </div>
     </div>
-    <div class="tab-content" id="gallery">
+        <div class="tab-content" id="gallery" style="background-color: yellow; padding: 10px; border-radius: 8px;"> <!-- highlight -->
             <div class="image-gallery">
                 <img src="images/photo.jpg" alt="Photo 1" />
                 
@@ -221,7 +232,7 @@
             document.getElementById('nameForm').reset();
             
         });
-        const tabButtons = document.querySelectorAll('.tab-button');
+             const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
 
         tabButtons.forEach(button => {
